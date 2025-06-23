@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Registration</title>
+  <link rel="stylesheet" href="dijit/themes/claro/claro.css">
+  <script>
+    var dojoConfig = { async: true, parseOnLoad: true };
+  </script>
+  <script src="dojo/dojo.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #outerBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #dceefb;
+    }
+
+    #registerbox {
+      width: 400px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    #Register {
+      text-align: center;
+      padding: 10px;
+      background-color: lightblue;
+      font-size: 18px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    td {
+      padding: 8px;
+      vertical-align: top;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    #RegisterBtn, #helpBtn {
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+  </style>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  
+</head>
+
+<body class="claro">
+  <form action="RegisterServlet" method="post">
+  <div id="outerBox">
+    <form>
+      <fieldset>
+        <div id="registerbox">
+          <h2 id="Register">Registration Form</h2>
+          <table>
+            <tr>
+              <td><label for="FullName">Full Name:</label></td>
+              <td><input id="FullName" data-dojo-type="dijit/form/ValidationTextBox"
+                         required placeHolder="Enter your name"
+                         data-dojo-props="validator:function(v){ return /^[A-Z][a-zA-Z ]+$/.test(v); }, invalidMessage:'Name must start with capital letter'" /></td>
+            </tr>
+
+            <tr>
+              <td><label for="PhoneNumber">Phone Number:</label></td>
+              <td><input id="PhoneNumber" data-dojo-type="dijit/form/ValidationTextBox"
+                         required placeHolder="Enter your phone number"
+                         data-dojo-props="validator:function(v){ return /^\d{10}$/.test(v); }, invalidMessage:'Phone must be 10 digits'" /></td>
+            </tr>
+
+            <tr>
+              <td><label for="email">Email:</label></td>
+              <td><input id="email" data-dojo-type="dijit/form/ValidationTextBox"
+                         required placeHolder="Enter your email"
+                         data-dojo-props="validator:function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }, invalidMessage:'Invalid email format'" /></td>
+            </tr>
+
+            <tr>
+              <td><label for="Password">Password:</label></td>
+              <td><input id="Password" data-dojo-type="dijit/form/ValidationTextBox"
+                         required placeHolder="Enter your password"
+                         data-dojo-props="validator:function(v){ return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/.test(v); }, invalidMessage:'Min 8 chars, 1 upper, 1 lower, 1 special'" /></td>
+            </tr>
+
+            <tr>
+              <td><label for="ConfirmPassword">Confirm Password:</label></td>
+              <td><input id="ConfirmPassword" data-dojo-type="dijit/form/ValidationTextBox"
+                         required placeHolder="Re-enter password"
+                         data-dojo-props="validator:function(v){ return v === dijit.byId('Password').get('value'); }, invalidMessage:'Passwords must match'" /></td>
+            </tr>
+
+            <tr>
+              <td><label>Gender:</label></td>
+              <td>
+                <input type="radio" name="Gender" id="radioOne" value="Male" checked />
+                <label for="radioOne">Male</label>
+                <input type="radio" data-dojo-type="dijit/form/RadioButton" name="Gender" id="radioTwo" value="Female" />
+                <label for="radioTwo">Female</label>
+              </td>
+            </tr>
+
+            <tr>
+              <td><label for="dob">Date of Birth:</label></td>
+              <td><input id="dob" data-dojo-type="dijit/form/DateTextBox" required placeHolder="Select your DOB" /></td>
+            </tr>
+
+            <tr>
+              <td><label for="role">Account Type:</label></td>
+              <td>
+                <select id="role" data-dojo-type="dijit/form/ComboBox">
+                  <option disabled selected>Select your role</option>
+                  <option value="Savings">Savings</option>
+                  <option value="Salary">Salary</option>
+                  <option value="Current">Current</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td><label for="addressArea">Address:</label></td>
+              <td>
+                <textarea data-dojo-type="dijit/form/SimpleTextarea"
+                          name="addressArea" id="addressArea"
+                          rows="3" cols="35"
+                          placeholder="Enter full address"></textarea>
+              </td>
+            </tr>
+
+            <tr>
+              <td><label for="Iagree">Terms:</label></td>
+              <td>
+                <input id="Iagree" data-dojo-type="dijit/form/CheckBox" />
+                <label for="Iagree">I agree</label>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2" style="text-align: center;">
+                <p id="message" style="font-weight:bold; color: red;"></p>
+                <button id="helpBtn" data-dojo-type="dijit/form/Button" type="button">Help</button>
+                <button id="RegisterBtn" data-dojo-type="dijit/form/Button" type="button">Register</button>
+              </td>
+            </tr>
+          </table>
+
+          <div id="helpDialog" data-dojo-type="dijit/Dialog" title="Need Help?">
+            <p>If you are an admin make sure your password includes <strong>'@'</strong>.</p>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+   <div class="g-recaptcha"  data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>></div>
+
+  <div id="successDialog" data-dojo-type="dijit/Dialog" title="Success">
+    <p>Registration Successful!</p>
+  </div>
+<script src="JS/recaptcha.js"></script>
+
+  <script src="JS/Register.js"></script>
+</body>
+</html>
