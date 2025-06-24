@@ -1,18 +1,23 @@
 package com.example;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.BufferedReader;
+import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLEncoder;
+
 import javax.net.ssl.HttpsURLConnection;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
-
+@SuppressWarnings("serial")
+@WebServlet("/index")
 public class Register extends HttpServlet {
     private static final String SECRET_KEY = "6Lf7o2orAAAAAH14GtzHWHlg9sNI9FEaJX1qbS6L";
 

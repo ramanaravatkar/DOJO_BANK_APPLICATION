@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Home Loan Application Form</title>
+ 
+  <!-- Load Dojo and Claro theme -->
+  <link rel="stylesheet" href="dijit/themes/claro/claro.css">
+  <script src="dojo/dojo.js"
+          data-dojo-config="parseOnLoad: true"></script>
+ 
+  <style>
+h1 {
+  text-align: center;
+}
+ 
+    .body {
+      padding: 30px;
+      
+    }
+    .form-field {
+      margin-bottom: 15px;
+      
+    }
+    fieldset {
+  background-color: #f8f9f9;
+}
+    label {
+      display: inline-block;
+      width: 180px;
+    }
+  </style>
+</head>
+ 
+<body class="claro">
+  <h1>🏠 Home Loan Application Form</h1>
+<fieldset>
+  <!-- Declarative Dojo Form -->
+  <div>
+    <h2>1. Application Details</h2>
+    <div class="form-field">
+      <label>Full Name:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="fullName" placeHolder="Enter your full name" required style="width: 250px;" />
+    </div>
+    <div class="form-field">
+      <label>Date of Birth:</label>
+      <input data-dojo-type="dijit/form/DateTextBox" id="dob"  placeHolder="Select your date of birth" required style="width: 250px;" />
+    </div>
+    <div class="form-field">
+      <label>Mobile Number:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="mobile" placeHolder="Enter mobile number" required style="width: 250px;" />
+    </div>
+    <div class="form-field">
+      <label>Email ID:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="email"placeHolder="Enter email address" required style="width: 250px;" />
+    </div>
+    <div class="form-field">
+      <label >Aadhar Number:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="aadhar" placeHolder="Enter Aadhar number" required style="width: 250px;" />
+    </div>
+    <div class="form-field">
+      <label>PAN Number:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="pan"placeHolder="Enter PAN number" required style="width: 250px;" />
+    </div>
+ 
+    <h2>2. Address</h2>
+    <div class="form-field">
+      <label>Current Address:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="currentAddress"placeHolder="Enter current address" required style="width: 250px;" />
+    </div>
+    <div class="form-field">
+      <label >Permanent Address:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="permanentAddress"placeHolder="Enter permanent address" required style="width: 250px;" />
+    </div>
+  </div>   
+ 
+<div>
+<h2>3.Employeed Details</h2>
+ 
+<div class="field">
+    <label>Occupation:</label>
+    <input id="salaried" data-dojo-type="dijit/form/CheckBox" /> Salaried
+    <input id="selfEmployed" data-dojo-type="dijit/form/CheckBox" /> Self-employed
+  </div>
+<br>
+<div>
+<label>Company/Business Name:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="company/businessname"placeHolder="Enter Complay/Business Name" required style="width: 250px;" />
+</div>
+<br>
+<div>
+<label>Monthly InCome:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="monthlyincome"placeHolder="Enter Amount"  required style="width: 250px;" /> INR
+</div>
+</div>
+ 
+<h2>4.Loan Details</h2>
+    <div class="form-field">
+      <label>Loan Amount Needed:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="loanamount"placeHolder="Enter Amount" required style="width: 250px;" /> INR
+    </div>
+    
+  <div class="field">
+    <label>Loan Purpose:</label>
+    <input id="New Home" data-dojo-type="dijit/form/CheckBox" />  New Home
+    <input id="construcation" data-dojo-type="dijit/form/CheckBox" /> Construcation
+    <input id="renovation" data-dojo-type="dijit/form/CheckBox" /> Renovation
+  </div>  
+   <br>
+     <div class="form-field">
+      <label>Property Location:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="location"placeHolder="Enter location" required style="width: 250px;" />
+    </div>
+    
+  </div>
+  
+  <h2>5.Co-Applicant(if any)</h2>
+    <div class="form-field">
+      <label>Name:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="name"placeHolder="Enter Name" required style="width: 250px;" />
+    </div>
+  <div class="form-field">
+      <label>RelationShip:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="Relationship"placeHolder="Enter relation" required style="width: 250px;" />
+    </div>
+    <div class="form-field">
+      <label>InCome:</label>
+      <input data-dojo-type="dijit/form/TextBox" id="income"placeHolder="Enter Amount" required style="width: 250px;" /> INR
+    </div>
+ 
+<h2>6.Documents Attached</h2>
+ 
+<div class="form-field">
+      <label for="fileInput">Aadhar File:</label>
+      <input type="file"id="fileInput" /> </div>
+      
+<div class="form-field">
+      <label for="fileInput">PAN File:</label>
+      <input type="file"id="fileInput" /> </div>
+      
+      <div class="form-field">
+      <label for="fileInput">IncomeProof File:</label>
+      <input type="file"id="fileInput" /> </div>
+      
+      <div class="form-field">
+      <label for="fileInput">Property Papers File:</label>
+      <input type="file"id="fileInput" /> </div>
+      
+      <div class="form-field">
+      <label for="fileInput"> Bank Statements File:</label>
+      <input type="file"id="fileInput" /> </div>
+      
+ 
+<h2>7.Decleration</h2>
+<p>I declare that the above information is true.</p><br>
+      <label>Signature:</label>
+      <br>
+      <label>Date:</label>
+   
+ 
+  <script>
+    require(["dojo/parser", "dojo/domReady!"], function(parser){
+      parser.parse();
+    });
+  </script>
+  </fieldset>
+</body>
+ 
+</html>
+
+ 

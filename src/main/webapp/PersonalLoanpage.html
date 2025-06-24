@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Personal Loan Application</title>
+  <link rel="stylesheet" href="dijit/themes/claro/claro.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+
+    }
+    .header {
+      background-color: #f5faff;
+      text-align: center;
+      padding: 8px;
+      border-bottom: 2px solid #ccc;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: darkblue;
+    }
+    .header h3 {
+      margin: 5px;
+      color: #444;
+    }
+    .application-title {
+      text-align: center;
+      font-size: 24px;
+      margin: 10px 0;
+      color: darkslategray;
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      height: 500px;
+      margin: 0 auto;
+    }
+    .box {
+      background-color: #f0f8ff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .side-box {
+      width: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .middle-box {
+      width: 55%;
+      overflow-y: auto;
+    }
+    .side-image {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 10px;
+    }
+    table td {
+      padding: 8px;
+    }
+    label {
+      font-weight: bold;
+    }
+    box side-box{
+      background-color: yellow;
+    }
+  </style>
+
+  <script src="dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: true"></script>
+  <script>
+    require([
+      "dojo/parser", "dijit/form/Form", "dijit/form/ValidationTextBox", "dijit/form/RadioButton",
+      "dijit/form/DateTextBox", "dijit/form/ComboBox", "dijit/form/SimpleTextarea",
+      "dijit/form/Button", "dojo/dom", "dojo/dom-style", "dojo/domReady!"
+    ], function(parser, Form, ValidationTextBox, RadioButton, DateTextBox, ComboBox,
+      SimpleTextarea, Button, dom, domStyle) {
+      parser.parse();
+
+      document.getElementById("submitPersonalBtn").onclick = function () {
+        domStyle.set("personalDetailsFormDiv", "display", "none");
+        domStyle.set("uploadDocsDiv", "display", "block");
+      };
+
+      document.getElementById("submitDocsBtn").onclick = function () {
+        domStyle.set("uploadDocsDiv", "display", "none");
+        domStyle.set("reviewDiv", "display", "block");
+      };
+    });
+  </script>
+</head>
+
+<body class="claro">
+  <div class="header">
+    <h1>Personal Loan</h1>
+    <h3>NGS Bank</h3>
+  </div>
+
+  <div class="application-title">
+    <strong>Application Form</strong>
+  </div>
+
+  <div class="container">
+  
+    <div class="box side-box">
+      <img src=" C:/Users/NGS149/Downloads/image.jfif   " alt=" Image" class="side-image">
+    </div>
+
+    
+    
+    
+    
+    <div class="box middle-box">
+      <!-- Personal Details Form -->
+      <div id="personalDetailsFormDiv">
+        <form id="personalDetailsForm" data-dojo-type="dijit/form/Form">
+          <table>
+            <tr>
+              <td><label for="FullName">Full Name:<span style="color:red;">*</span></label></td>
+              <td><input id="FullName" name="FullName" data-dojo-type="dijit/form/ValidationTextBox" required="true"
+                placeHolder="Enter your name"
+                data-dojo-props="validator:function(v){ return /^[A-Z][a-zA-Z ]+$/.test(v); }, invalidMessage:'Start with a capital letter'" /></td>
+            </tr>
+            <tr>
+              <td><label for="PhoneNumber">Phone Number:<span style="color:red;">*</span></label></td>
+              <td><input id="PhoneNumber" name="PhoneNumber" data-dojo-type="dijit/form/ValidationTextBox" required="true"
+                placeHolder="Enter phone"
+                data-dojo-props="validator:function(v){ return /^\\d{10}$/.test(v); }, invalidMessage:'10 digits only'" /></td>
+            </tr>
+            <tr>
+              <td><label for="email">Email:<span style="color:red;">*</span></label></td>
+              <td><input id="email" name="email" data-dojo-type="dijit/form/ValidationTextBox" required="true"
+                placeHolder="Enter email"
+                data-dojo-props="validator:function(v){ return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(v); }, invalidMessage:'Invalid email'" /></td>
+            </tr>
+            <tr>
+              <td><label>Gender:</label></td>
+              <td>
+                <input type="radio" name="Gender" id="radioOne" value="Male" checked />
+                <label for="radioOne">Male</label>
+                <input type="radio" data-dojo-type="dijit/form/RadioButton" name="Gender" id="radioTwo" value="Female" />
+                <label for="radioTwo">Female</label>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="dob">DOB:</label></td>
+              <td><input id="dob" name="dob" data-dojo-type="dijit/form/DateTextBox" required="true" /></td>
+            </tr>
+            <tr>
+              <td><label for="role">Account Type:</label></td>
+              <td><select id="role" name="role" data-dojo-type="dijit/form/ComboBox">
+                <option>Savings</option>
+                <option>Salary</option>
+                <option>Current</option>
+              </select></td>
+            </tr>
+            <tr>
+              <td><label for="loanPurpose">Loan Purpose:</label></td>
+              <td><select id="loanPurpose" name="loanPurpose" data-dojo-type="dijit/form/ComboBox">
+                <option>Home Renovation</option>
+                <option>Marriage</option>
+                <option>Bike</option>
+              </select></td>
+            </tr>
+            <tr>
+              <td><label for="monthlyIncome">Monthly Income:</label></td>
+              <td><input id="monthlyIncome" name="monthlyIncome" data-dojo-type="dijit/form/ValidationTextBox" required="true" /></td>
+            </tr>
+            <tr>
+              <td><label for="addressArea">Address:</label></td>
+              <td><textarea data-dojo-type="dijit/form/SimpleTextarea" id="addressArea" name="addressArea" rows="3" cols="30"></textarea></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align:center;">
+                <button id="submitPersonalBtn" data-dojo-type="dijit/form/Button" type="button">Submit</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+
+  
+  
+  
+  
+  
+      <div id="uploadDocsDiv" style="display:none;">
+        <h3>Upload Documents</h3>
+        
+      <table style="margin: 0 auto;">
+  <tr>
+    <td><label for="aadhaarFile">Aadhaar Card:<span style="color:red;">*</span></label></td>
+    <td><input type="file" id="aadhaarFile" name="aadhaarFile" /></td>
+  </tr>
+  <tr>
+    <td><label for="panFile">PAN Card:<span style="color:red;">*</span></label></td>
+    <td><input type="file" id="panFile" name="panFile" /></td>
+  </tr>
+ 
+</table>
+        <div style="text-align:center;">
+          <button id="submitDocsBtn" data-dojo-type="dijit/form/Button" type="button">Submit</button>
+        </div>
+      </div>
+
+      <div id="reviewDiv" style="display:none; text-align:center;">
+        <h2 style="color:green;">Your application is under review. We’ll contact you soon!</h2>
+      </div>
+    </div>
+
+  
+    <div class="box side-box">
+      <img src="    C:/Users/NGS149/Downloads/image.jfif    " alt=" img" class="side-image">
+    </div>
+  </div>
+</body>
+</html>

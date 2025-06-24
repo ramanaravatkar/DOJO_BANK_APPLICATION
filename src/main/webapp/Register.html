@@ -59,51 +59,57 @@
     }
   </style>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
   
 </head>
 
 <body class="claro">
-  <form action="RegisterServlet" method="post">
-  <div id="outerBox">
-    <form>
+ <body class="claro">
+  <form action="Register" method="post">
+    <div id="outerBox">
       <fieldset>
+
         <div id="registerbox">
           <h2 id="Register">Registration Form</h2>
           <table>
             <tr>
-              <td><label for="FullName">Full Name:</label></td>
-              <td><input id="FullName" data-dojo-type="dijit/form/ValidationTextBox"
-                         required placeHolder="Enter your name"
+              <td><label for="FullName">Full Name:<span style="color: red;">*</span></label></td>
+              <td><input id="FullName" data-dojo-type="dijit/form/ValidationTextBox" required placeHolder="Enter your name"
                          data-dojo-props="validator:function(v){ return /^[A-Z][a-zA-Z ]+$/.test(v); }, invalidMessage:'Name must start with capital letter'" /></td>
             </tr>
 
             <tr>
-              <td><label for="PhoneNumber">Phone Number:</label></td>
-              <td><input id="PhoneNumber" data-dojo-type="dijit/form/ValidationTextBox"
-                         required placeHolder="Enter your phone number"
+              <td><label for="PhoneNumber">Phone Number:<span style="color: red;">*</span></label></td>
+              <td><input id="PhoneNumber" data-dojo-type="dijit/form/ValidationTextBox" required placeHolder="Enter your phone number"
                          data-dojo-props="validator:function(v){ return /^\d{10}$/.test(v); }, invalidMessage:'Phone must be 10 digits'" /></td>
             </tr>
 
             <tr>
-              <td><label for="email">Email:</label></td>
-              <td><input id="email" data-dojo-type="dijit/form/ValidationTextBox"
-                         required placeHolder="Enter your email"
+              <td><label for="email">Email:<span style="color: red;">*</span></label></td>
+              <td><input id="email" data-dojo-type="dijit/form/ValidationTextBox"  required placeHolder="Enter your email"
                          data-dojo-props="validator:function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }, invalidMessage:'Invalid email format'" /></td>
             </tr>
 
-            <tr>
-              <td><label for="Password">Password:</label></td>
-              <td><input id="Password" data-dojo-type="dijit/form/ValidationTextBox"
-                         required placeHolder="Enter your password"
-                         data-dojo-props="validator:function(v){ return /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/.test(v); }, invalidMessage:'Min 8 chars, 1 upper, 1 lower, 1 special'" /></td>
-            </tr>
+           <tr>
+  <td><label for="Password">Password:<span style="color: red;">*</span></label></td>
+  <td>
+    
+      <input id="Password" type="password"
+             data-dojo-type="dijit/form/ValidationTextBox" required placeHolder="Enter your password"
+            data-dojo-props="validator:function(v){ return /^\d{10}$/.test(v); }, invalidMessage:'Min 8 chars, 1 upper, 1 lower, 1 special'" />
+   </div>
+  </td>
+  </tr>
+
 
             <tr>
-              <td><label for="ConfirmPassword">Confirm Password:</label></td>
-              <td><input id="ConfirmPassword" data-dojo-type="dijit/form/ValidationTextBox"
-                         required placeHolder="Re-enter password"
+              <td><label for="ConfirmPassword">Confirm Password:<span style="color: red;">*</span></label></td>
+              <td><input id="ConfirmPassword"  type="password" data-dojo-type="dijit/form/ValidationTextBox" required placeHolder="Re-enter password"
                          data-dojo-props="validator:function(v){ return v === dijit.byId('Password').get('value'); }, invalidMessage:'Passwords must match'" /></td>
+         
+
             </tr>
+             
 
             <tr>
               <td><label>Gender:</label></td>
@@ -121,10 +127,10 @@
             </tr>
 
             <tr>
-              <td><label for="role">Account Type:</label></td>
+              <td><label for="role">Account Type:<span style="color: red;">*</span></label></td>
               <td>
                 <select id="role" data-dojo-type="dijit/form/ComboBox">
-                  <option disabled selected>Select your role</option>
+                  <option disabled selected>Select your Account</option>
                   <option value="Savings">Savings</option>
                   <option value="Salary">Salary</option>
                   <option value="Current">Current</option>
@@ -142,32 +148,35 @@
               </td>
             </tr>
 
-            <tr>
+          <!--   <tr>
               <td><label for="Iagree">Terms:</label></td>
               <td>
                 <input id="Iagree" data-dojo-type="dijit/form/CheckBox" />
                 <label for="Iagree">I agree</label>
               </td>
-            </tr>
+            </tr> -->
 
             <tr>
               <td colspan="2" style="text-align: center;">
                 <p id="message" style="font-weight:bold; color: red;"></p>
                 <button id="helpBtn" data-dojo-type="dijit/form/Button" type="button">Help</button>
                 <button id="RegisterBtn" data-dojo-type="dijit/form/Button" type="button">Register</button>
+             
               </td>
             </tr>
+      
           </table>
 
           <div id="helpDialog" data-dojo-type="dijit/Dialog" title="Need Help?">
-            <p>If you are an admin make sure your password includes <strong>'@'</strong>.</p>
+            <p>All <strong> *</strong>  fields are Required .</p>
           </div>
         </div>
+          <div class="g-recaptcha"  data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div></div> 
+        
       </fieldset>
     </form>
   </div>
-   <div class="g-recaptcha"  data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>></div>
-
+ 
   <div id="successDialog" data-dojo-type="dijit/Dialog" title="Success">
     <p>Registration Successful!</p>
   </div>
