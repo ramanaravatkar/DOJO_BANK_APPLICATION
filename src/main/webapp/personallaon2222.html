@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Tab Container</title>
+  <link rel="stylesheet" href="dijit/themes/claro/claro.css">
+  <style>
+    table td {
+      padding: 8px;
+    }
+    label {
+      font-weight: bold;
+    }
+  </style>
+  <script src="dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: true"></script>
+</head>
+<body class="claro">
+  <header style="text-align: center; margin-bottom: 20px;color: darkblue;">
+    <h1 style="color: darkblue;">NGS Bank Personal Loan</h1>
+    <h3  style="color: red";>Application Form</h3>
+  </header>
+
+  <div style="width: 1300px; height: 500px; margin: 0 auto;">
+    <div id="tc"></div>
+  </div>
+</body>
+
+  <script>
+    require([
+      "dojo/ready",
+      "dijit/layout/TabContainer",
+      "dijit/layout/ContentPane",
+      "dijit/form/ValidationTextBox",
+      "dijit/form/RadioButton",
+      "dijit/form/DateTextBox",
+      "dijit/form/ComboBox",
+      "dijit/form/SimpleTextarea",
+      "dijit/form/Button",
+      "dojo/on",
+      "dojo/dom",
+      "dojo/domReady!",
+      "dijit/registry"
+    ], function(ready, TabContainer, ContentPane, ValidationTextBox, RadioButton, DateTextBox, ComboBox, SimpleTextarea, Button, on, dom, domReady, registry) {
+      ready(function () {
+    	  
+    	  
+    	  
+        var tc = new TabContainer({
+        	id: "tc",
+          style: "height: 100%; width: 100%; background-color: aqua"
+        }, "tc");
+
+        var cp1 = new ContentPane({
+        	  id: "personalTab",  
+        	  title: "Personal Details",
+        	  closable: true,
+        	  onClose: function() {
+        	    return confirm("Do you really want to Close this?");
+        	  },
+          content: `
+            <form id="personalDetailsForm">
+              <table>
+                <tr>
+                  <td><label for="FullName">Full Name:<span style="color: red;">*</span></label></td>
+                  <td><input id="FullName" data-dojo-type="dijit/form/ValidationTextBox" required placeholder="Enter your name"
+                      data-dojo-props="validator:function(v){ return /^[A-Z][a-zA-Z ]+$/.test(v); }, invalidMessage:'Name must start with capital letter'" /></td>
+                </tr>
+                <tr>
+                  <td><label for="PhoneNumber">Phone Number:<span style="color: red;">*</span></label></td>
+                  <td><input id="PhoneNumber" data-dojo-type="dijit/form/ValidationTextBox" required placeholder="Enter your phone number"
+                      data-dojo-props="validator:function(v){ return /^\\d{10}$/.test(v); }, invalidMessage:'Phone must be 10 digits'" /></td>
+                </tr>
+                <tr>
+                  <td><label for="email">Email:<span style="color: red;">*</span></label></td>
+                  <td><input id="email" data-dojo-type="dijit/form/ValidationTextBox" required placeholder="Enter your email"
+                      data-dojo-props="validator:function(v){ return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(v); }, invalidMessage:'Invalid email format'" /></td>
+                </tr>
+                <tr>
+                  <td><label>Gender:</label></td>
+                  <td>
+                    <input type="radio" name="Gender" id="radioOne" value="Male" checked />
+                    <label for="radioOne">Male</label>
+                    <input type="radio" data-dojo-type="dijit/form/RadioButton" name="Gender" id="radioTwo" value="Female" />
+                    <label for="radioTwo">Female</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="dob">Date of Birth:</label></td>
+                  <td><input id="dob" data-dojo-type="dijit/form/DateTextBox" required placeholder="Select your DOB" /></td>
+                </tr>
+                <tr>
+                  <td><label for="role">Account Type:<span style="color: red;">*</span></label></td>
+                  <td>
+                    <select id="role" data-dojo-type="dijit/form/ComboBox">
+                      <option disabled selected>Select your Account</option>
+                      <option value="Savings">Savings</option>
+                      <option value="Salary">Salary</option>
+                      <option value="Current">Current</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="loanPurpose">Loan Purpose:<span style="color: red;">*</span></label></td>
+                  <td>
+                    <select id="loanPurpose" data-dojo-type="dijit/form/ComboBox">
+                      <option disabled selected>Select Loan Purpose</option>
+                      <option value="Home Renovation">Home Renovation</option>
+                      <option value="Marriage">Marriage</option>
+                      <option value="Bike">Bike</option>
+                      <option value="Others">Others</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="monthlyIncome">Monthly Income:<span style="color: red;">*</span></label></td>
+                  <td><input id="monthlyIncome" data-dojo-type="dijit/form/ValidationTextBox" required placeholder="Enter your monthly income" /></td>
+                </tr>
+                <tr>
+                  <td><label for="occupation">Occupation:<span style="color: red;">*</span></label></td>
+                  <td>
+                    <select id="occupation" data-dojo-type="dijit/form/ComboBox">
+                      <option disabled selected>Select Occupation</option>
+                      <option value="Salaried">Salaried</option>
+                      <option value="Self-employed">Self-employed</option>
+                      <option value="Freelancer">Freelancer</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label for="addressArea">Address:</label></td>
+                  <td>
+                    <textarea data-dojo-type="dijit/form/SimpleTextarea" id="addressArea" rows="3" cols="35" placeholder="Enter full address"></textarea>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align: center;">
+                    <button id="submitPersonalBtn" data-dojo-type="dijit/form/Button" type="button">Submit</button>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          `
+           });
+        
+        var cp2 = new ContentPane({
+          title: "Upload Documents",
+          id:"second",
+          closable: true,
+          onClose: function() {
+            return confirm("Do you really want to Close this?");
+          },
+          content: `
+        	  <table style="margin: 0 auto;">
+        	    <tr>
+        	      <td><label for="aadhaar">Aadhaar Card:<span style="color: red;">*</span></label></td>
+        	      <td><input type="file" id="aadhaar" accept=".pdf,.jpg,.jpeg,.png"></td>
+        	    </tr>
+        	    <tr><td colspan="2"><br></td></tr>
+        	    <tr>
+        	      <td><label for="pan">PAN Card:<span style="color: red;">*</span></label></td>
+        	      <td><input type="file" id="pan" accept=".pdf,.jpg,.jpeg,.png"></td>
+        	    </tr>
+        	    <tr><td colspan="2"><br></td></tr>
+        	    <tr>
+        	      <td colspan="2" style="text-align:center; color: gray;">
+        	        Accepted formats: PDF, JPG, PNG
+        	      </td>
+        	    </tr>
+        	    <tr><td colspan="2"><br></td></tr>
+        	    <tr>
+        	      <td colspan="2" style="text-align:center;">
+        	        <button id="goToReviewBtn" data-dojo-type="dijit/form/Button" type="button">Submit</button>
+        	      </td>
+        	    </tr>
+        	  </table>
+        	`
+          
+        });
+
+        var cp3 = new ContentPane({
+          title: "Review",
+          id:"third",
+         /*  closable: true,
+          onClose: function() {
+            return confirm("Do you really want to Close this?");
+          }, */
+          content: "<h3>Your Application is under Process. Our Team will Update you soon.</h3>"
+        });
+
+        tc.addChild(cp1);
+        tc.addChild(cp2);
+        tc.addChild(cp3);
+        tc.startup();
+
+        var submitBtn = registry.byId("submitPersonalBtn");
+        var tc = registry.byId("tc");
+        var personalPane = registry.byId("personalTab");
+        var uploadPane = registry.byId("second"); 
+        
+        personalPane.set("disabled", true);
+        
+        uploadPane.set("disabled", true);
+    
+        
+        
+        if (submitBtn && tc) {
+          on(submitBtn, "click", function () {
+            const getValue = (id) => registry.byId(id)?.get("value");
+            
+            
+           
+             	var name = registry.byId("FullName");
+            	var validName = name.validate();
+            	
+            	var phn = registry.byId("PhoneNumber");
+            	var validPhn = phn.validate();
+            	
+            	var mail = registry.byId("email");
+            	var validMail = mail.validate();
+            	
+            	 
+       if(validName && validPhn && validMail){
+          console.clear();
+          console.log("=== Personal Details Submitted ===");
+          console.log("Full Name:", getValue("FullName"));
+          console.log("Phone Number:", getValue("PhoneNumber"));
+          console.log("Email:", getValue("email"));
+          console.log("Gender:", document.querySelector('input[name="Gender"]:checked')?.value);
+          console.log("DOB:", getValue("dob"));
+          console.log("Account Type:", getValue("role"));
+          console.log("Loan Purpose:", getValue("loanPurpose"));
+          console.log("Monthly Income:", getValue("monthlyIncome"));
+          console.log("Occupation:", getValue("occupation"));
+          console.log("Address:", getValue("addressArea"));
+          tc.selectChild("second");
+          alert("Details submited!!")
+          
+          uploadPane.set("disabled", false);
+}else {
+	alert("Enter all required Details !!")
+}
+          });
+        
+   }
+        
+        var reviewBtn = null;
+    
+    setTimeout(function() {
+      reviewBtn = registry.byId("goToReviewBtn");
+      
+      if (reviewBtn) {
+        on(reviewBtn, "click", function() {
+          const aadhaar = document.getElementById("aadhaar")?.files[0];
+          const pan = document.getElementById("pan")?.files[0];
+
+          console.log("=== Upload Documents Submitted ===");
+          console.log("Aadhaar File:", aadhaar ? aadhaar.name : "Not selected");
+          console.log("PAN File:", pan ? pan.name : "Not selected");
+          
+          
+          var tc = registry.byId("tc");
+          reviewPane.set("disabled", true);
+         
+         
+          tc.selectChild("third"); // Move to Review tab
+        });
+      }
+    }, 800); // Wait for widget parsing to complete
+  });
+    });
+    
+  </script>
+</body>
+</html>
